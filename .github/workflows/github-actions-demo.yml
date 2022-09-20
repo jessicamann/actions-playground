@@ -36,10 +36,8 @@ jobs:
               message: 'new release tag',
               type: 'commit',
               object: ${{github.sha}},
-              tagger: {
-                name: ${{github.event.pusher.name}}
-                email: ${{github.event.pusher.email}}
-              }
+              tagger.name: ${{github.event.pusher.name}}
+              tagger.email: ${{github.event.pusher.email}}
             })
       - name: Generate release notes
         run: echo "📝 should use the github action here to create a release"
