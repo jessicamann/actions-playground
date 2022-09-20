@@ -14,10 +14,21 @@ jobs:
       - name: run unit tests
         run: |
           npm test
-  Create-New-Release:
+  Print-Some-Stuff:
     runs-on: ubuntu-latest
     environment: prod
     needs: [Build-And-Test]
+    concurrency: print_some_stuff
+    steps:
+      - name: What is in our context
+        run: |
+          echo "github.actor: ${{github.actor}}"
+          echo "github.event_name: ${{github.event_name}}"
+          
+  Create-New-Release:
+    runs-on: ubuntu-latest
+    environment: prod
+    needs: [Print-Some-Stuff]
     concurrency: release_job
     timeout-minutes: 1
     steps:
