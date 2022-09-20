@@ -38,6 +38,8 @@ jobs:
         with:
           script: |
             github.rest.git.createTag({
+              owner: context.repo.owner,
+              repo: context.repo.repo
             })
       - name: Generate release notes
         run: echo "📝 should use the github action here to create a release"
