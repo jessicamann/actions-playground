@@ -19,6 +19,7 @@ jobs:
     environment: prod
     needs: [Build-And-Test]
     concurrency: release_job
+    timeout-minutes: 1
     steps:
       - name: Create release tag
         uses: actions/github-script@v6
