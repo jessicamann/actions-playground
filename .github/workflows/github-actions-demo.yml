@@ -26,6 +26,7 @@ jobs:
     needs: [Build-And-Test]
     steps:
       - name: Bump release number
+        run: echo "🔎 Using run number ${{ github.run_number }} as release number"
         env:
           RELEASE_NUMBER: '${{github.run_number}}'
       - name: Create release tag
