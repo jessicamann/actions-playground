@@ -40,7 +40,9 @@ jobs:
             github.rest.git.createTag({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              tag: "v0.0.${{github.run_number}}"
+              tag: "v0.0.${{github.run_number}}",
+              message: "",
+              object: "${{github.sha}}"
             })
       - name: Generate release notes
         run: echo "📝 should use the github action here to create a release"
