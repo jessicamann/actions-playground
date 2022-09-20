@@ -37,5 +37,12 @@ jobs:
               object: "${{github.sha}}",
               type: "commit"
             })
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: "refs/tags/v0.0.${{github.run_number}}",
+              sha: "${{github.sha}}"
+            })
+
       - name: Generate release notes
         run: echo "📝 should use the github action here to create a release"
