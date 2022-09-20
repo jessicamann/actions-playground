@@ -39,16 +39,16 @@ jobs:
           debug: true
           script: |
             github.rest.git.createTag({
-              owner: ${{github.repository_owner}},
-              repo: ${{github.repository}},
-              tag: ${{github.run_number}},
-              message: 'new release tag',
-              type: 'commit',
-              object: ${{github.sha}},
-              tagger: {
-                name: ${{github.event.pusher.name}},
-                email: ${{github.event.pusher.email}}
-              }
+              # owner: context.repo.owner,
+              # repo: context.repo.repo,
+              # tag: "${{github.run_number}}",
+              # message: 'new release tag',
+              # type: 'commit',
+              # object: "${{github.sha}}",
+              # tagger: {
+              #   name: ${{github.event.pusher.name}},
+              #   email: ${{github.event.pusher.email}}
+              # }
             })
       - name: Generate release notes
         run: echo "📝 should use the github action here to create a release"
