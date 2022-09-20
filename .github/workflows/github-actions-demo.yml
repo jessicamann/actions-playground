@@ -36,8 +36,10 @@ jobs:
       - name: Create release tag
         uses: actions/github-script@v6
         with:
-          debug: true
-          script: |
+          with:
+            script: |
+              echo "Hello!"
+          # script: |
             github.rest.git.createTag({
               # owner: context.repo.owner,
               # repo: context.repo.repo,
@@ -49,6 +51,6 @@ jobs:
               #   name: ${{github.event.pusher.name}},
               #   email: ${{github.event.pusher.email}}
               # }
-            })
+            # })
       - name: Generate release notes
         run: echo "📝 should use the github action here to create a release"
