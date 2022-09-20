@@ -34,7 +34,7 @@ jobs:
           echo "tagger.name: ${{github.event.pusher.name}}"
           echo "tagger.email: ${{github.event.pusher.email}}"
       - name: Create release tag
-        uses: actions/github-script@v5
+        uses: actions/github-script@v6
         with:
           debug: true
           script: |
