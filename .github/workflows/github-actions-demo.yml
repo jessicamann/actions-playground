@@ -1,7 +1,5 @@
 name: my-pipeline
 
-concurrency: main_workflow
-
 on: [push]
 
 jobs:
@@ -20,6 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: prod
     needs: [Build-And-Test]
+    concurrency: release_job
     steps:
       - name: Create release tag
         uses: actions/github-script@v6
