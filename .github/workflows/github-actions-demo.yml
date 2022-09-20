@@ -16,6 +16,7 @@ jobs:
           npm test
   Create-New-Release:
     runs-on: ubuntu-latest
+    environment: prod
     needs: [Build-And-Test]
     steps:
       - name: Create release tag
