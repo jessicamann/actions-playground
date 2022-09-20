@@ -37,7 +37,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            echo "Hello!"
+            console.log(context)
           # script: |
             # github.rest.git.createTag({
               # owner: context.repo.owner,
