@@ -36,9 +36,8 @@ jobs:
       - name: Create release tag
         uses: actions/github-script@v6
         with:
-          with:
-            script: |
-              echo "Hello!"
+          script: |
+            echo "Hello!"
           # script: |
             # github.rest.git.createTag({
               # owner: context.repo.owner,
