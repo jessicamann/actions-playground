@@ -1,5 +1,7 @@
 name: my-pipeline
 
+concurrency: main_workflow
+
 on: [push]
 
 jobs:
