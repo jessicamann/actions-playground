@@ -30,7 +30,6 @@ jobs:
 
             const currentRunNumberAsString = ${{github.run_number}}
             const currentRunNumber = parseInt(currentRunNumberAsString)
-            console.log(`currentRunNumber: ${currentRunNumber}`)
 
             const earlier_workflows = response.data.workflow_runs.filter(run => {
               console.log("${{github.workflow}}")
