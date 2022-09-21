@@ -5,10 +5,7 @@ on:
     inputs:
       run_id:
         required: false
-        type: number
-      attempt_number:
-        required: false
-        type: number
+        type: string
       timeout_minutes:
         required: false
         type: number
@@ -22,5 +19,4 @@ jobs:
       - name: Inputs
         run: |
           echo "run_id: ${{inputs.run_id}}"
-          echo "attempt_number: ${{inputs.attempt_number}}"
           echo "timeout_minutes: ${{inputs.timeout_minutes}}"

@@ -6,9 +6,6 @@ on:
       run_id: 
         required: true
         type: number
-      attempt_number:
-        required: true
-        type: number
       timeout_minutes: 
         required: true
         type: number
@@ -29,11 +26,10 @@ jobs:
         with:
           result-encoding: string
           script: |
-            const {status} = await github.rest.actions.getWorkflowRunAttempt({
+            const {status} = await github.rest.actions.getWorkflowRun({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              run_id: ${{inputs.run_id}},
-              attempt_number: ${{inputs.attempt_number}}
+              run_id: ${{inputs.run_id}}
             })
             console.log(`Found status ${status} for run_id/attempt: ${run_id}/${attempt_number}`)
 
