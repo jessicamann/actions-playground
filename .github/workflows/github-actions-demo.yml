@@ -15,6 +15,10 @@ jobs:
         run: |
           npm test
 
+  hello-world:
+    needs: [Build-And-Test]
+    uses: ./.github/workflows/hello-world.yml
+
   auto-cancel-workflow-after-1-min:
     needs: [Build-And-Test]
     uses: ./.github/workflows/auto-cancel-pending.yml
