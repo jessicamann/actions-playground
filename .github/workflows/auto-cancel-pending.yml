@@ -31,7 +31,7 @@ jobs:
               repo: context.repo.repo,
               run_id: ${{inputs.run_id}}
             })
-            console.log(`Found status ${status} for run_id/attempt: ${run_id}/${attempt_number}`)
+            console.log(`Found status ${status} for run_id: ${run_id}`)
 
             return status
       - name: Proceed with canceling workflow due to timeout

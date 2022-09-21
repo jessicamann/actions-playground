@@ -20,7 +20,6 @@ jobs:
     uses: ./.github/workflows/hello-world.yml
     with:
       run_id: ${{github.run_id}}
-      attempt_number: ${{github.run_attempt}}
       timeout_minutes: 1
 
   Create-New-Release:
