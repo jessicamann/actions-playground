@@ -22,10 +22,10 @@ jobs:
     steps:
       - run: echo "Let's get this show on the road 💃🏻"
 
-  # Cleanup:
-  #   needs: [Begin-Release]
-  #   uses: ./.github/workflows/roomba.yml
+  Cleanup:
+    needs: [Begin-Release]
+    uses: ./.github/workflows/roomba.yml
 
   release:
-    needs: [Begin-Release]
+    needs: [Cleanup]
     uses: ./.github/workflows/release.yml
