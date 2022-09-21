@@ -20,4 +20,4 @@ jobs:
               run_id ${{github.run_id}}
             })
             console.log(`Found a total of ${workflows.length} pending deployments`)
-      - name: TODO - reject each workflow found
+      - run: TODO - reject each workflow found
