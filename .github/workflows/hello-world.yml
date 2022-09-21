@@ -1,4 +1,4 @@
-name: Hello World
+name: Enforce Timeout
 
 on: 
   workflow_call:
