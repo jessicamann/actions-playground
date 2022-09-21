@@ -33,10 +33,3 @@ jobs:
   release:
     needs: [Begin-Release]
     uses: ./.github/workflows/release.yml
-
-  # enforce-approval-timeout:
-  #   needs: [Build-And-Test]
-  #   uses: ./.github/workflows/hello-world.yml
-  #   with:
-  #     run_id: ${{github.run_id}}
-  #     timeout_minutes: 5
