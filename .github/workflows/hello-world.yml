@@ -37,7 +37,8 @@ jobs:
 
             return status
       - name: Print result
-        run: echo "result: ${{steps.check-workflow-state.outputs.result}}"
+        run: |
+          echo "result: ${{steps.check-workflow-state.outputs.result}}"
       - name: Cancele workflow in waiting state due to timeout
         if: ${{steps.check-workflow-state.outputs.result == 'waiting' }}
         uses: actions/github-script@v6
