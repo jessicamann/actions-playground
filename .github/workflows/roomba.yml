@@ -42,7 +42,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            if(${{steps.find-pending-workflows.outputs.result.count}} == 0) {
+            if("${{steps.find-pending-workflows.outputs.result.count}}" == "0") {
               console.log("Nothing to do here! Great job on deploying frequently! 🎉")
               return;
             }
