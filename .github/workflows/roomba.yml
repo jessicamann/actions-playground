@@ -1,4 +1,4 @@
-name: Approval Waiting Roomba
+name: Roomba
 
 on:
   workflow_call:
@@ -13,14 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Cleaning up earlier workflows that is still waiting for approval 🧹"
-      - run: echo "TODO - retrieve our current workflow ID; apparently that'll be a separate API call"
       - name: Retrieve earlier workflows that are still pending review
         uses: actions/github-script@v6
         with:
           script: |
-            const response = await github.rest.actions.listWorkflowRunsForRepo({
+            const response = await github.rest.actions.listWorkflowRuns({
               owner: context.repo.owner,
               repo: context.repo.repo,
+              workflow_id: "github-actions-demo.yml",
               status: "waiting"
             })
             console.log(Object.keys(response.data))
