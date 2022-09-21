@@ -53,7 +53,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 run_id: run.id,
-                environment_ids: ???,
+                environment_ids: [637406852],
                 state: "rejected",
                 comment: "Rejected automatically because a later workflow (${{github.run_number}}) has been triggered.",
               });
