@@ -26,7 +26,7 @@ jobs:
   Create-New-Release:
     runs-on: ubuntu-latest
     environment: prod
-    needs: [Print-Some-Stuff]
+    needs: [Build-And-Test]
     concurrency: release_job
     timeout-minutes: 1
     steps:
