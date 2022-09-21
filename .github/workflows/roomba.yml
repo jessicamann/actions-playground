@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Cleaning up earlier workflows that is still waiting for approval 🧹"
+      - run: echo "TODO - retrieve our current workflow ID; apparently that'll be a separate API call"
       - name: Retrieve earlier workflows that are still pending review
         uses: actions/github-script@v6
         with:
@@ -35,7 +36,7 @@ jobs:
               console.log(run.workflow_id.toString())
               console.log(run.run_number)
 
-              return run
+              return currentRunNumber > run.run_number
             })
 
             console.log(`Found ${earlier_workflows.length} earlier workflows still pending.`)
