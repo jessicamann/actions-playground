@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Cleaning up earlier workflows that is still waiting for approval 🧹"
-      - name: Create a github release
+      - name: Retrieve earlier workflows that are still pending review
         uses: actions/github-script@v6
         with:
           script: |
@@ -19,5 +19,5 @@ jobs:
               status: "waiting",
               created: "<${{github.event.head_commit.timestamp}}"
             })
-            console.log(Object.keys(response))
+            console.log(Object.keys(response.data))
       - run: TODO - reject each workflow found
