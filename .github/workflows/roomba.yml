@@ -34,12 +34,12 @@ jobs:
               return {id: run.id, run_number: run.run_number}
             })
 
-            const result = { count: earlier_workflows.length, workflows: earlier_workflows}
-            console.log(`Found ${result.count} earlier workflows still pending.`)
+            const result = { continue: earlier_workflows.length > 0 ? 'Y' : 'N', workflows: earlier_workflows}
+            console.log(`Found ${earlier_workflows.length} earlier workflows still pending.`)
             console.log(`Result: ${JSON.stringify(result)}`)
             return result
       - name: Rejecting found workflows from previous step 🙅🏻‍♀️
-        if: ${{ steps.find-pending-workflows.outputs.result.count > 0 }}
+        if: ${{ steps.find-pending-workflows.outputs.result.continue == 'Y' }}
         uses: actions/github-script@v6
         with:
           script: |
@@ -57,4 +57,4 @@ jobs:
               console.log("Run with number=${run.run_number} successfully rejected.")
             }
       - run: echo "No earlier workflows pending approval found! 🎬"
-        if: ${{ steps.find-pending-workflows.outputs.result.count == 0 }}
+        if: ${{ steps.find-pending-workflows.outputs.result.continue == 'N' }}
