@@ -28,11 +28,11 @@ jobs:
         with:
           result-encoding: string
           script: |
-            const response = await github.rest.actions.getWorkflowRun({
+            const {data:{status}} = await github.rest.actions.getWorkflowRun({
               owner: context.repo.owner,
               repo: context.repo.repo,
               run_id: ${{ inputs.run_id }}
             })
-            console.log(`${JSON.stringify(response)}`)
+            console.log(`Found status ${status} for run_id: ${{inputs.run_id}}`)
 
-            return "what what"
+            return status
