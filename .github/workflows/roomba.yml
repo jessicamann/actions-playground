@@ -31,7 +31,7 @@ jobs:
             console.log(`currentRunNumber: ${currentRunNumber}`)
 
             const earlier_workflows = response.data.workflow_runs.filter(run => {
-              console.log(${{github.workflow}})
+              console.log("${{github.workflow}}")
               console.log(run.workflow_id.toString())
               console.log(run.run_number)
 
