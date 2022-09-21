@@ -5,6 +5,8 @@ on: workflow_call
 jobs:
   Create-New-Release:
     runs-on: ubuntu-latest
+    environment: prod
+    concurrency: release_job
     steps:
       - name: Create release tag
         uses: actions/github-script@v6
