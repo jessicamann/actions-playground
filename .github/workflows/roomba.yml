@@ -24,9 +24,6 @@ jobs:
               workflow_id: "github-actions-demo.yml",
               status: "waiting"
             })
-            console.log(Object.keys(response.data))
-            console.log(Object.keys(response.data.total_count))
-            console.log(Object.keys(response.data.workflow_runs[0]))
 
             const currentRunNumberAsString = ${{github.run_number}}
             const currentRunNumber = parseInt(currentRunNumberAsString)
@@ -38,8 +35,8 @@ jobs:
 
               return currentRunNumber > run.run_number
             })
-
             console.log(`Found ${earlier_workflows.length} earlier workflows still pending.`)
+
             return { workflows: earlier_workflows }
       - name: Rejecting found workflows from previous step 🙅🏻‍♀️
         if: steps.find-pending-workflows.outputs.result.workflows.length > 0
