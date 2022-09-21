@@ -1,6 +1,10 @@
-name: Approval Waiting Roomba
+name: Roomba
 
-on: workflow_call
+on:
+  workflow_call:
+  push:
+    branches:
+      - roomba
 
 concurrency: roomba_workflow
 
@@ -9,15 +13,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Cleaning up earlier workflows that is still waiting for approval 🧹"
-      - name: Create a github release
+      - name: Retrieve earlier workflows that are still pending review
         uses: actions/github-script@v6
         with:
           script: |
-            const response = await github.rest.actions.listWorkflowRunsForRepo({
+            const response = await github.rest.actions.listWorkflowRuns({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              status: "waiting",
-              created: "<${{github.event.head_commit.timestamp}}"
+              workflow_id: "github-actions-demo.yml",
+              status: "waiting"
             })
-            console.log(Object.keys(response))
-      - run: TODO - reject each workflow found
+            console.log(Object.keys(response.data))
+            console.log(Object.keys(response.data.total_count))
+            console.log(Object.keys(response.data.workflow_runs[0]))
+
+            const currentRunNumberAsString = ${{github.run_number}}
+            const currentRunNumber = parseInt(currentRunNumberAsString)
+            console.log(`currentRunNumber: ${currentRunNumber}`)
+
+            const earlier_workflows = response.data.workflow_runs.filter(run => {
+              console.log("${{github.workflow}}")
+              console.log(run.workflow_id.toString())
+              console.log(run.run_number)
+
+              return currentRunNumber > run.run_number
+            })
+
+            console.log(`Found ${earlier_workflows.length} earlier workflows still pending.`)
