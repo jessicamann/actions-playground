@@ -27,5 +27,5 @@ jobs:
     uses: ./.github/workflows/roomba.yml
 
   release:
-    needs: [Cleanup]
+    needs: [Roomba]
     uses: ./.github/workflows/release.yml
