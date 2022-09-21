@@ -1,5 +1,4 @@
 name: pending-timeout
-description: Automatically cancel a workflow that is waiting for approval after a given timeout
 
 on: 
   workflow_call:
