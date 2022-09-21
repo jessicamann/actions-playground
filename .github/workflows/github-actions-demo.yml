@@ -20,7 +20,7 @@ jobs:
     uses: ./.github/workflows/auto-cancel-pending.yml
     with:
       run_id: ${{github.run_id}}
-      attempt_number: ${{run_attempt}}
+      attempt_number: ${{github.run_attempt}}
       timeout_minutes: 1
 
   Print-Some-Stuff:
