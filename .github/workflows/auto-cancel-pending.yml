@@ -1,0 +1,51 @@
+name: pending-timeout
+description: Automatically cancel a workflow that is waiting for approval after a given timeout
+
+on: 
+  workflow_call:
+    inputs:
+      run_id: 
+        required: true
+        type: numbers
+      attempt_number:
+        required: true
+        type: number
+      timeout_minutes: 
+        required: true
+        type: number
+
+jobs:
+  Wait-For-Timeout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for ${{ inputs.timeout_minutes }} minutes
+        run: sleep ${{inputs.timeout_minutes}}m
+  Cancel-If-Still-Pending:
+    runs-on: ubuntu-latest
+    needs: [Wait-For-Timeout]
+    steps:
+      - name: Checking calling workflow state
+        uses: actions/github-script@v6
+        id: check-workflow-state
+        with:
+          result-encoding: string
+          script: |
+            const {status} = await github.rest.actions.getWorkflowRunAttempt({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: ${{inputs.run_id}},
+              attempt_number: ${{inputs.attempt_number}}
+            })
+            console.log(`Found status ${status} for run_id/attempt: ${run_id}/${attempt_number}`)
+
+            return status
+      - name: Proceed with canceling workflow due to timeout
+        if: ${{steps.set-result.outputs.result == 'waiting' }}
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.actions.cancelWorkflowRun({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: ${{inputs.run_id}},
+            });
