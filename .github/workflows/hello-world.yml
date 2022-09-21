@@ -20,3 +20,5 @@ jobs:
         run: |
           echo "run_id: ${{inputs.run_id}}"
           echo "timeout_minutes: ${{inputs.timeout_minutes}}"
+      - name: Wait for ${{ inputs.timeout_minutes }} minutes 🕰
+        run: sleep ${{inputs.timeout_minutes}}m
