@@ -30,8 +30,8 @@ jobs:
               console.log(run.workflow_id)
               console.log(run.run_number)
 
-              return ${{github_workflow}} === run.workflow_id.toString() &&
-              ${{github.run_number}} > run.run_rumber
+              return ${{github.workflow}} === run.workflow_id.toString() &&
+              parseInt(${{github.run_number}}) > run.run_rumber
             })
 
             console.log(`Found ${earlier_workflows.length} earlier workflows.`)
