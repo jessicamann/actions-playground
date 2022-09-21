@@ -22,7 +22,7 @@ jobs:
     steps:
       - run: echo "Let's get this show on the road 💃🏻"
 
-  Cleanup:
+  Roomba:
     needs: [Begin-Release]
     uses: ./.github/workflows/roomba.yml
 
