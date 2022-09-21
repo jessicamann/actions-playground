@@ -23,17 +23,6 @@ jobs:
       attempt_number: ${{github.run_attempt}}
       timeout_minutes: 1
 
-  Print-Some-Stuff:
-    runs-on: ubuntu-latest
-    environment: prod
-    needs: [Build-And-Test]
-    concurrency: print_some_stuff
-    steps:
-      - name: What is in our context
-        run: |
-          echo "github.actor: ${{github.actor}}"
-          echo "github.event_name: ${{github.event_name}}"
-
   Create-New-Release:
     runs-on: ubuntu-latest
     environment: prod
