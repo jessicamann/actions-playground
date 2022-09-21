@@ -2,11 +2,16 @@ name: Release
 
 on: workflow_call
 
+concurrency: release_workflow
+
 jobs:
+  Artitrary-Wait:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Waiting for 3 minutes to check if concurrency is working for entire workflow 💤"
+      - run: sleep 3m
   Create-New-Release:
     runs-on: ubuntu-latest
-    environment: prod
-    concurrency: release_job
     steps:
       - name: Create release tag
         uses: actions/github-script@v6
