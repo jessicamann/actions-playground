@@ -24,4 +24,4 @@ jobs:
             })
             console.log(Object.keys(response.data))
             console.log(Object.keys(response.data.total_count))
-            console.log(Object.keys(response.workflow_runs[0]))
+            console.log(Object.keys(response.data.workflow_runs[0]))
