@@ -19,7 +19,6 @@ jobs:
     needs: [Build-And-Test]
     environment: prod
     concurrency: release_job
-    id: create_new_releases
     uses: ./.github/workflows/release.yml
 
   enforce-approval-timeout:
