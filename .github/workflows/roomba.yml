@@ -14,10 +14,13 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
+            console.log(`owner: ${context.repo.owner}`)
+            console.log(`repo: ${context.repo.repo}`)
+            console.log(`run_id: ${{github.run_id}}`)
             const workflows = github.rest.action.getPendingDeploymentsForRun({
-              owner: context.repo.owner
-              repo: context.repo.repo
-              run_id ${{github.run_id}}
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: ${{github.run_id}}
             })
             console.log(`Found a total of ${workflows.length} pending deployments`)
       - run: TODO - reject each workflow found
