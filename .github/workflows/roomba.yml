@@ -35,7 +35,7 @@ jobs:
               console.log(run.workflow_id.toString())
               console.log(run.run_number)
 
-              return ${{github.workflow}} === "35301002" && 98 > run.run_rumber
+              return run
             })
 
             console.log(`Found ${earlier_workflows.length} earlier workflows still pending.`)
