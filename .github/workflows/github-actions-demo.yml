@@ -22,14 +22,10 @@ jobs:
     steps:
       - run: echo "Let's get this show on the road 💃🏻"
 
-  # Pending-Approval-Roomba:
-  #   runs-on: ubuntu-latest
-  #   needs: [Begin-Release]
-  #   steps:
-  #     - run: echo "Cleaning up earlier workflows that is still waiting for approval 🧹"
-  #     - name: Looking for earlier workflows still in waiting
-  #     - name: Rejecting ${n} workflows found
+  Cleanup:
+    needs: [Begin-Release]
+    uses: ./.github/workflows/roomba.yml
 
   release:
-    needs: [Begin-Release]
+    needs: [Cleanup]
     uses: ./.github/workflows/release.yml

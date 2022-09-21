@@ -1,0 +1,31 @@
+name: Approval Waiting Roomba
+
+on: workflow_call
+
+concurrency: roomba_workflow
+
+jobs:
+  runs-on: ubuntu-latest
+  steps:
+    - run: echo "Cleaning up earlier workflows that is still waiting for approval 🧹"
+    - name: Looking for earlier workflows still in waiting
+      id: look_for_deployments_pending_review
+      uses: actions/github-script@v6
+        with:
+          script: |
+            const workflows = github.rest.action.getPendingDeploymentsForRun({
+              owner: context.repo.owner
+              repo: context.repo.repo
+              run_id ${{github.run_id}}
+            })
+            console.log(`Found a total of ${workflows.length} pending deployments`)
+    - name: TODO - reject each workflow found
+  
+
+    # Pending-Approval-Roomba:
+  #   runs-on: ubuntu-latest
+  #   needs: [Begin-Release]
+  #   steps:
+  #     - run: echo "Cleaning up earlier workflows that is still waiting for approval 🧹"
+  #     - name: Looking for earlier workflows still in waiting
+  #     - name: Rejecting ${n} workflows found
