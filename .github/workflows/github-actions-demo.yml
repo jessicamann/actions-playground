@@ -15,6 +15,14 @@ jobs:
         run: |
           npm test
 
+  auto-cancel-workflow-after-1-min:
+    needs: [Build-And-Test]
+    uses: ./.github/workflows/auto-cancel-pending.yml
+    with:
+      run_id: ${{github.run_id}}
+      attempt_number: ${{run_attempt}}
+      timeout_minutes: 1
+
   Print-Some-Stuff:
     runs-on: ubuntu-latest
     environment: prod
