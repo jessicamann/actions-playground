@@ -37,18 +37,20 @@ jobs:
             const result = { count: earlier_workflows.length, workflows: earlier_workflows}
             console.log(`Found ${result.count} earlier workflows still pending.`)
             console.log(`Result: ${JSON.stringify(result)}`)
-            return result
+            return JSON.stringify(result)
       - name: Rejecting found workflows from previous step 🙅🏻‍♀️
         uses: actions/github-script@v6
         with:
           script: |
-            if("${{steps.find-pending-workflows.outputs.result.count}}" == "0") {
+            const output = ${{steps.find-pending-workflows.outputs.result}}
+            const result = JSON.parse(output)
+
+            if(result.count == 0) {
               console.log("Nothing to do here! Great job on deploying frequently! 🎉")
               return;
             }
 
-            const workflowsToReject = ${{steps.find-pending-workflows.outputs.result}}
-            for (const run of workflowsToReject) {
+            for (const run of result.workflows) {
               console.log("Rejecting earlier run with number=${run.run_number} and id=${run.id}...")
               await github.rest.actions.reviewPendingDeploymentsForRun({
                 owner: context.repo.owner,
