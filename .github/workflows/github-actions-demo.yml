@@ -17,5 +17,14 @@ jobs:
 
   release:
     needs: [Build-And-Test]
+    environment: prod
+    concurrency: release_job
+    id: create_new_releases
     uses: ./.github/workflows/release.yml
-    timeout-minutes: 1
+
+  enforce-approval-timeout:
+    needs: [Build-And-Test]
+    uses: ./.github/workflows/hello-world.yml
+    with:
+      run_id: ${{github.run_id}}
+      timeout_minutes: 5
