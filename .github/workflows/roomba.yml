@@ -23,4 +23,5 @@ jobs:
               status: "waiting"
             })
             console.log(Object.keys(response.data))
-      - run: TODO - reject each workflow found
+            console.log(Object.keys(response.data.totalCount))
+            console.log(Object.keys(response.workflow_runs[0]))
