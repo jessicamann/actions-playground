@@ -26,15 +26,6 @@ jobs:
             console.log(Object.keys(response.data.total_count))
             console.log(Object.keys(response.data.workflow_runs[0]))
 
-            # const currentRunNumberAsString = ${{github.run_number}}
-            # const currentRunNumber = parseInt(currentRunNumberAsString)
-            # console.log(`currentRunNumber: ${currentRunNumber}`)
-            # const earlier_workflows = response.data.workflow_runs.filter(run => {
-            #   console.log(run.workflow_id)
-            #   console.log(run.run_number)
-
-            #   return ${{github.workflow}} === run.workflow_id.toString() &&
-            #   currentRunNumber > run.run_rumber
-            # })
-
-            # console.log(`Found ${earlier_workflows.length} earlier workflows.`)
+            const currentRunNumberAsString = ${{github.run_number}}
+            const currentRunNumber = parseInt(currentRunNumberAsString)
+            console.log(`currentRunNumber: ${currentRunNumber}`)
