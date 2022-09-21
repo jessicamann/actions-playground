@@ -42,7 +42,7 @@ jobs:
 
             console.log(`Found ${earlier_workflows.length} earlier workflows still pending.`)
             return earlier_workflows
-      - run: echo "Some debug stuff ${{steps.find-pending-workflows.outputs.result.length}}"
+      - run: echo "Some debug stuff ${{steps.find-pending-workflows.outputs.result}}"
       - name: Rejecting found workflows from previous step 🙅🏻‍♀️
         if: steps.find-pending-workflows.outputs.result.length > 0
         uses: actions/github-script@v6
