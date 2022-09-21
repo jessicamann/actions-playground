@@ -17,7 +17,5 @@ jobs:
 
   release:
     needs: [Build-And-Test]
-    timeout-minutes: 1
     uses: ./.github/workflows/release.yml
-
-  
+    timeout-minutes: 1
