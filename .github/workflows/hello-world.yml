@@ -31,8 +31,8 @@ jobs:
             const {status} = await github.rest.actions.getWorkflowRun({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              run_id: ${{inputs.run_id}}
+              run_id: ${{ inputs.run_id }}
             })
-            console.log(`Found status ${status} for run_id: ${run_id}`)
+            console.log(`Found status ${status} for run_id: ${{ inputs.run_id }}`)
 
             return status
