@@ -1,6 +1,16 @@
 name: Hello World
 
-on: workflow_call
+on: 
+  workflow_call:
+    run_id:
+      required: true
+      type: number
+    attempt_number:
+      required: true
+      type: number
+    timeout_minutes:
+      required: true
+      type: number
 
 jobs:
   Hello:
@@ -8,3 +18,8 @@ jobs:
     steps:
       - name: Greetings 👋🏻
         run: echo "Hellooooooooo"
+      - name: Inputs
+        run: |
+          echo "run_id: ${{inputs.run_id}}"
+          echo "attempt_number: ${{inputs.attempt_number}}"
+          echo "timeout_minutes: ${{inputs.timeout_minutes}}"
