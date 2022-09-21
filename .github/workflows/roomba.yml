@@ -36,7 +36,7 @@ jobs:
 
             const result = { count: earlier_workflows.length, workflows: earlier_workflows}
             console.log(`Found ${result.count} earlier workflows still pending.`)
-            console.log(`Result: ${JSON.stringify(result.workflows)}`)
+            console.log(`Result: ${JSON.stringify(result)}`)
             return result
       - name: Rejecting found workflows from previous step 🙅🏻‍♀️
         if: ${{ steps.find-pending-workflows.outputs.result.count > 0 }}
