@@ -33,7 +33,6 @@ jobs:
               repo: context.repo.repo,
               run_id: ${{ inputs.run_id }}
             })
-            # console.log(`Found status ${status} for run_id: ${{ inputs.run_id }}`)
-            console.log
+            console.log(`${response}`)
 
             return "what what"
