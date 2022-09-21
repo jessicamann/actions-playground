@@ -2,15 +2,16 @@ name: Hello World
 
 on: 
   workflow_call:
-    run_id:
-      required: true
-      type: number
-    attempt_number:
-      required: true
-      type: number
-    timeout_minutes:
-      required: true
-      type: number
+    input:
+      run_id:
+        required: true
+        type: number
+      attempt_number:
+        required: true
+        type: number
+      timeout_minutes:
+        required: true
+        type: number
 
 jobs:
   Hello:
