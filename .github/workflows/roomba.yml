@@ -13,28 +13,11 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const timestamp = ${{github.event.head_commit.timestamp}}
-            console.log(`owner: ${context.repo.owner}`)
-            console.log(`repo: ${context.repo.repo}`)
-            console.log(`created: <${timestamp}`)
-
-      # - name: Looking for earlier workflows still in waiting
-      #   id: look_for_deployments_pending_review
-      #   uses: actions/github-script@v6
-      #   with:
-      #     script: |
-      #       const timestamp = ${{github.event.head_commit.timestamp}}
-      #       console.log(`owner: ${context.repo.owner}`)
-      #       console.log(`repo: ${context.repo.repo}`)
-      #       console.log(`created: <${timestamp}`)
-
-      #       # console.log(`Using timestamp ${timestamp} for comparison`)
-      #       # const {data} = await github.rest.actions.listWorkflowRunsForRepo({
-      #       #   owner: context.repo.owner,
-      #       #   repo: context.repo.repo,
-      #       #   status: "waiting",
-      #       #   created: `<${timestamp}`
-      #       # })
-
-      #       # console.log(`Found a total of ${data.total_count} pending deployments`)
+            const response = await github.rest.actions.listWorkflowRunsForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              status: "waiting",
+              created: "<${{github.event.head_commit.timestamp}}"
+            })
+            console.log(Object.keys(response))
       - run: TODO - reject each workflow found
