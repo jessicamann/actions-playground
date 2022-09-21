@@ -29,15 +29,15 @@ jobs:
             const currentRunNumber = parseInt(currentRunNumberAsString)
 
             const earlier_workflows = response.data.workflow_runs.filter(run => {
-              console.log("${{github.workflow}}")
-              console.log(run.workflow_id.toString())
-              console.log(run.run_number)
-
               return currentRunNumber > run.run_number
+            }).map(run => {
+              return {id: run.id, run_number: run.run_number}
             })
-            console.log(`Found ${earlier_workflows.length} earlier workflows still pending.`)
 
-            return { count: earlier_workflows.length, workflows: earlier_workflows }
+            const result = { count: earlier_workflows.length, workflows: earlier_workflows}
+            console.log(`Found ${result.count} earlier workflows still pending.`)
+            console.log(`Result: ${JSON.stringify(result.workflows)}`)
+            return result
       - name: Rejecting found workflows from previous step 🙅🏻‍♀️
         if: steps.find-pending-workflows.outputs.result.count > 0
         uses: actions/github-script@v6
